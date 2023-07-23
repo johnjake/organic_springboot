@@ -13,7 +13,7 @@ public class Billing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -44,11 +44,10 @@ public class Billing {
     @Column(name = "ship_to_address")
     private Boolean shipToAddress;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "user_id")
-    private User userId;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    public Billing(String firstName, String lastName, String country, String address, String town, String state, String zipCode, String phone, String email, Boolean shipToAddress, User userId) {
+    public Billing(String firstName, String lastName, String country, String address, String town, String state, String zipCode, String phone, String email, Boolean shipToAddress, Integer userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
@@ -150,11 +149,11 @@ public class Billing {
         this.shipToAddress = shipToAddress;
     }
 
-    public User getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 }
