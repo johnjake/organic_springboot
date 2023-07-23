@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+
+  main:
+    web-application-type: servlet
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/organic
+    username: johnjake
+    password: livelove_2000
+
+  mvc:
+    view:
+      prefix: /templates/
+
+logging:
+  level:
+    org:
+      thymeleaf: DEBUG
+
