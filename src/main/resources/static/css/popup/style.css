@@ -1,0 +1,304 @@
+/* Reset
+** ----------------------------------------------- */
+body {
+	margin: 0;
+	line-height: 1.5;
+	font-family: Arial, Helvetica, sans-serif;
+}
+img {
+	box-sizing: border-box;
+	max-width: 100%;
+	max-height: 100%;
+	height: auto;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+	font-family: Roboto, Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	line-height: 1.2;
+}
+code {
+    background-color: #E1F9FF;
+    padding: 1px 3px;
+    box-shadow: 0 -1px 2px 0 rgba(37, 129, 174, 0.3) inset;
+    border-radius: 3px;
+    color: #0A7BB3;
+}
+.code {
+	font-family: monospace;
+	white-space: pre;
+}
+a {
+	color: #50addb;
+}
+
+/* Base
+** ----------------------------------------------- */
+.base {
+	max-width: 860px;
+	margin: auto;
+}
+.base-content {
+	padding: 0 25px;
+}
+
+/* Utils
+** ----------------------------------------------- */
+.margin-t-15 {
+	margin-top: 15px;
+}
+.opct-5 {
+	opacity: 0.5;
+}
+/* Inputs
+** ----------------------------------------------- */
+/* buttons */
+button {
+	position: relative;
+	padding: 10px 30px;
+	border-radius: 3px;
+	border: 1px solid;
+	cursor: pointer;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.1), 0 -2px rgba(0,0,0,0.1) inset, 0 2px rgba(255,255,255,0.2) inset;
+	transition: all 0.2s ease 0s;
+}
+button:hover {
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1), 0 -2px rgba(0,0,0,0.1) inset, 0 2px rgba(255,255,255,0.2) inset,
+	0 4px 5px rgba(0,0,0,0.1);
+	transform: scale(1.1);
+}
+button:active {
+	top: 1px;
+	transform: scale(1);
+	box-shadow: 0 2px 2px rgba(0,0,0,0.1) inset,
+	0 4px 5px rgba(0,0,0,0.2) inset;
+	transition: none;
+}
+
+.btn-normal {
+	color: #5B6D72;
+	background: #FCFCFD;
+}
+.btn-success {
+	color: #13A20A;
+	background: #F9FFFA;
+}
+.btn-error {
+	color: #E11919;
+	background: #FFF7F7;
+}
+.btn-info {
+	color: #31BFDB;
+	background: #EDFCFF;
+}
+.btn-alert {
+	color: #F2BC00;
+	background: #FFFFED;
+}
+
+/* fields */
+textarea,
+[type="text"] {
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #C6C6C6;
+	background-color: #F9F9F9;
+	border-radius: 3px;
+	box-shadow: -1px -1px 1px rgba(0,0,0,0.1) inset;
+	padding: 10px 15px;
+}
+textarea {
+	resize: vertical;
+	height: 70px;
+}
+
+/* checkbox */
+label {
+	display: flex;
+}
+.label-icon {
+	min-width: 30px;
+	max-width: 30px;
+	margin-right: 15px;
+	margin-top: 6px;
+}
+[type="checkbox"] {
+	display: none;
+}
+.checkbox {
+	display: inline-flex;
+	width: 30px;
+	height: 30px;
+	background: url('../images/check-2-colors.png') no-repeat 0 center;
+	background-size: 200% 100%;
+}
+[type="checkbox"]:checked ~ .checkbox {
+	background-position: -30px center;
+}
+
+/* Header
+** ----------------------------------------------- */
+.section {
+	padding: 30px 0;
+}
+.top {
+	background-color: #50addb;
+}
+.example-buttons {
+	display: flex;
+}
+.example-buttons .btn + .btn:not(.btn-custom):not(.btn-success) {
+	margin-left: 20px;
+}
+.example-buttons .btn-custom,
+.example-buttons .btn-success {
+	margin-left: auto;
+}
+.preview-custom-types {
+	margin: 25px 10px 0;
+	text-align: center;
+}
+.preview-custom-types .btn {
+	margin: 5px;
+}
+
+/* Content
+** ----------------------------------------------- */
+.box {
+	margin-top: 25px;
+	padding: 25px;
+	background-color: #FFF;
+	border-radius: 5px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.3) inset;
+}
+.title,
+.title-alt {
+	margin: 0;
+	padding: 0;
+	font-size: 26px;
+	text-align: center;
+}
+.title {
+	color: #FFF;
+	text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+.title-alt {
+	color: #333;
+	text-shadow: 1px 1px rgba(255,255,255,0.2);
+}
+.obs {
+	font-size: 20px;
+	font-weight: normal;
+}
+
+/* Test parameters */
+.box-test-items {
+	max-height: 300px;
+	overflow-y: auto;
+}
+.test-item + .test-item {
+	padding-top: 10px;
+	margin-top: 10px;
+	border-top: 1px solid #EEE;
+}
+
+.test-label {
+	font-size: 18px;
+	display: table;
+}
+.test-description {
+	display: table;
+	font-size: 13px;
+	color: #999;
+}
+
+/* table */
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+thead {
+	background-color: #E1F9FF;
+	color: #000000;
+}
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+tr:nth-child(2n) {
+	background-color: #FAFAFA;
+}
+
+/* Donate
+** ----------------------------------------------- */
+.donate {
+	padding-top: 15px;
+	display: flex;
+	justify-content: center;
+}
+
+/* Examples
+** ----------------------------------------------- */
+.msgpopup-another-example {
+	background: linear-gradient(to bottom right, #FFF, #00C3FF, #FFF);
+	color: #FFF;
+	text-shadow: 1px 1px rgba(0, 0, 0, 0.22);
+}
+
+/* Example 1 */
+.example-title {
+	margin: 0 0 10px;
+	padding: 5px;
+	background-color: #31BFDB;
+	color: #FFF;
+}
+.example-content {
+	font-weight: normal;
+	font-size: 16px;
+}
+
+/* Example 2 */
+.example-box-2 {
+	background-color: #FAFAFA;
+	border-radius: 3px;
+	box-shadow: 0 1px 8px rgba(0, 157, 10, 0.3);
+	overflow: hidden;
+	border: 1px solid #18AE30;
+}
+.example-title-2 {
+	display: flex;
+	color: #00B725;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	margin: 0;
+	padding: 10px;
+	background: linear-gradient(#EEFFF1, #d3ffda);
+	border-bottom: 1px solid #00DF23;
+}
+.example-icon-2 {
+	display: block;
+	max-width: 30px;
+	margin-right: 15px;
+}
+.example-content-2 {
+	font-weight: normal;
+	font-size: 16px;
+	padding: 15px
+}
+.example-buttons-2 {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 10px 10px;
+}
+.example-box-2 button {
+	padding: 10px 15px;
+	margin: 5px;
+}
+.example-box-2 .btn-info {
+	margin-right: auto;
+}

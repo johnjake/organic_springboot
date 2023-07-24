@@ -1,5 +1,6 @@
 package com.organimaster.org.controller;
 
+import com.organimaster.org.dto.BillingDTO;
 import com.organimaster.org.model.Billing;
 import com.organimaster.org.services.BillingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class BillingController {
     }
 
     @PostMapping
-    public ResponseEntity<Billing> createBilling(@RequestBody Billing billing) {
-        Billing savedBilling = billingService.saveBilling(billing);
+    public ResponseEntity<Billing> createBilling(@RequestBody BillingDTO billingDTO) {
+        Billing savedBilling = billingService.saveBilling(billingDTO);
         return new ResponseEntity<>(savedBilling, HttpStatus.CREATED);
     }
 

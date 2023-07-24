@@ -1,5 +1,6 @@
 package com.organimaster.org.services;
 
+import com.organimaster.org.dto.BillingDTO;
 import com.organimaster.org.model.Billing;
 import com.organimaster.org.repository.BillingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,20 @@ public class BillingService {
         this.billingRepository = billingRepository;
     }
 
-    public Billing saveBilling(Billing billing) {
-        // Add any business logic or validation before saving if needed
-        return billingRepository.save(billing);
+    public Billing saveBilling(BillingDTO billing) {
+        var bill = new Billing();
+        bill.setFirstName(billing.getFirstName());
+        bill.setLastName(billing.getLastName());
+        bill.setCountry(billing.getCountry());
+        bill.setAddress(billing.getAddress());
+        bill.setTown(billing.getTown());
+        bill.setState(billing.getState());
+        bill.setZipCode(billing.getZipCode());
+        bill.setPhone(billing.getPhone());
+        bill.setEmail(billing.getEmail());
+        bill.setShipToAddress(billing.getShipToAddress());
+        bill.setUserId(billing.getUserId());
+        return billingRepository.save(bill);
     }
 
     public Billing getBillingById(Long id) {
@@ -26,8 +38,6 @@ public class BillingService {
 
     public Billing updateBilling(Long id, Billing billing) {
         Billing existingBilling = getBillingById(id);
-
-        // Update the existing billing with the new data
         existingBilling.setFirstName(billing.getFirstName());
         existingBilling.setLastName(billing.getLastName());
         existingBilling.setCountry(billing.getCountry());
@@ -38,9 +48,7 @@ public class BillingService {
         existingBilling.setPhone(billing.getPhone());
         existingBilling.setEmail(billing.getEmail());
         existingBilling.setShipToAddress(billing.getShipToAddress());
-        var ds = existingBilling.getUserId();
-        existingBilling.setUserId(ds);
-
+        existingBilling.setUserId(existingBilling.getUserId());
         return billingRepository.save(existingBilling);
     }
 
