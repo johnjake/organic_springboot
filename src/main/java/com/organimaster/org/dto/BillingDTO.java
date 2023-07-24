@@ -1,53 +1,24 @@
-package com.organimaster.org.model;
+package com.organimaster.org.dto;
 
-import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Data
-@NoArgsConstructor
-@Table(name = "billing")
-public class Billing {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "first_name")
+public class BillingDTO {
     private String firstName;
-
-    @Column(name = "last_name")
     private String lastName;
-
-    @Column(name = "country")
     private String country;
-
-    @Column(name = "address")
     private String address;
-
-    @Column(name = "town")
     private String town;
-
-    @Column(name = "state")
     private String state;
-
-    @Column(name = "zip_code")
+    @JsonProperty("zip")
     private int zipCode;
-
-    @Column(name = "phone")
     private String phone;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "ship_to_address")
+    @JsonProperty("shipping")
     private int shipToAddress;
-
-    @Column(name = "user_id")
+    @JsonProperty("userid")
     private int userId;
 
-    public Billing(String firstName, String lastName, String country, String address, String town, String state, int zipCode, String phone, String email, int shipToAddress, int userId) {
+    public BillingDTO(String firstName, String lastName, String country, String address, String town, String state, int zipCode, String phone, String email, int shipToAddress, int userId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
@@ -59,14 +30,6 @@ public class Billing {
         this.email = email;
         this.shipToAddress = shipToAddress;
         this.userId = userId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -149,7 +112,7 @@ public class Billing {
         this.shipToAddress = shipToAddress;
     }
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 
