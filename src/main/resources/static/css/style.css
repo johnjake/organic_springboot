@@ -615,6 +615,17 @@ ol {
     color: #ffffff;
 }
 
+.product_categories__all:after {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "3";
+    font-family: "ElegantIcons";
+    font-size: 18px;
+    color: #ffffff;
+}
+
 .hero__categories ul {
     border: 1px solid #ebebeb;
     padding-left: 40px;

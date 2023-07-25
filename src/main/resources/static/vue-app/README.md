@@ -1,4 +1,4 @@
-# organic-vue
+# vue-app
 
 ## Project setup
 ```
