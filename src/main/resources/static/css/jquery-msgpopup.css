@@ -42,6 +42,13 @@
 	right: 0;
 }
 
+.centered-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 4vh; /* Set the container height to occupy the full viewport height */
+}
+
 /**
  * Theme
  * ----------------------------------------------------------------------------------
