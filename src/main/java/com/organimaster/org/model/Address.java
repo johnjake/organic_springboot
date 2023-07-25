@@ -36,9 +36,6 @@ public class Address extends UserDateAudit {
 	@JoinColumn(name = "geo_id")
 	private Geo geo;
 
-	@OneToOne(mappedBy = "address")
-	private User user;
-
 	public Address(String street, String suite, String city, String zipcode, Geo geo) {
 		this.street = street;
 		this.suite = suite;
