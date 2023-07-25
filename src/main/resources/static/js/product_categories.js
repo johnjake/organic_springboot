@@ -24,7 +24,6 @@ $(document).ready(function() {
             console.error('Error fetching data:', error);
         }
     });
-
     // Handle selection change
     $('#categoryDropdown').change(function() {
         const selectedCategoryId = $(this).val();
