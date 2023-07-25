@@ -29,10 +29,6 @@ public class Company extends UserDateAudit {
 	@Column(name = "bs")
 	private String bs;
 
-	@OneToOne(mappedBy = "company")
-	private User user;
-
-
 	public Company(String name, String catchPhrase, String bs) {
 		this.name = name;
 		this.catchPhrase = catchPhrase;

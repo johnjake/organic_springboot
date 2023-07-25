@@ -58,4 +58,9 @@ public class MainController {
     public String navigateToLogin() {
         return "login";
     }
+
+    @GetMapping(value = "/sign-up", produces = "text/html")
+    public String navigateToSignUp() {
+        return "sign-up";
+    }
 }

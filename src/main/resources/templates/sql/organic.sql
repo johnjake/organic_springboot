@@ -16,6 +16,17 @@ CREATE TABLE `billing` (
    CONSTRAINT `fk_user_billing` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+CREATE TABLE `users` (
+     `id` bigint(19) UNSIGNED NOT NULL,
+     `first_name` varchar(50) NOT NULL,
+     `last_name` varchar(50) NOT NULL,
+     `username` varchar(50) NOT NULL,
+     `password` varchar(100) NOT NULL,
+     `email` varchar(100) NOT NULL,
+     `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `supplier` (
    `id` bigint(19) unsigned NOT NULL AUTO_INCREMENT,
