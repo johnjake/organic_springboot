@@ -54,9 +54,9 @@ public class MainController {
         return "add-products";
     }
 
-    @GetMapping(value = "/login", produces = "text/html")
+    @GetMapping(value = "/sign-in", produces = "text/html")
     public String navigateToLogin() {
-        return "login";
+        return "sign-in";
     }
 
     @GetMapping(value = "/sign-up", produces = "text/html")
