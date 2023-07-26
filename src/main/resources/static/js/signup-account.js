@@ -1,11 +1,11 @@
 new Vue({
     el: '#signUp',
     data: {
-        fname: '',
-        lname: '',
-        username: '',
-        emailadd: '',
-        userpass: '',
+        firstName: '',
+        lastName: '',
+        userName: '',
+        emailAdd: '',
+        userPass: '',
         rewrite: ''
     },
     methods: {
@@ -24,7 +24,7 @@ new Vue({
                 return emailPattern.test(email);
             }
 
-            if (this.fname.trim() === '') {
+            if (this.firstName.trim() === '') {
                 $().msgpopup({
                     text: 'First name is required!'
                 });
@@ -32,7 +32,7 @@ new Vue({
                 return;
             }
 
-            if (this.lname.trim() === '') {
+            if (this.lastName.trim() === '') {
                 $().msgpopup({
                     text: 'last name is required!'
                 });
@@ -40,7 +40,7 @@ new Vue({
                 return;
             }
 
-            if (this.username.trim() === '') {
+            if (this.userName.trim() === '') {
                 $().msgpopup({
                     text: 'username is required!'
                 });
@@ -48,7 +48,7 @@ new Vue({
                 return;
             }
 
-            if (this.emailadd.trim() === '') {
+            if (this.emailAdd.trim() === '') {
                 $().msgpopup({
                     text: 'email address is required!'
                 });
@@ -56,7 +56,7 @@ new Vue({
                 return;
             }
 
-            if (!this.isValidEmail(this.emailadd)) {
+            if (!this.isValidEmail(this.emailAdd)) {
                 $().msgpopup({
                     text: 'Invalid email address!'
                 });
@@ -64,7 +64,7 @@ new Vue({
                 return;
             }
 
-            if (this.userpass.trim() === '') {
+            if (this.userPass.trim() === '') {
                 $().msgpopup({
                     text: 'password is required!'
                 });
@@ -72,7 +72,7 @@ new Vue({
                 return;
             }
 
-            if (this.userpass.length <= 5) {
+            if (this.userPass.length <= 5) {
                 $().msgpopup({
                     text: 'password does not meet the minimum required length!'
                 });
@@ -88,7 +88,7 @@ new Vue({
                 return;
             }
 
-            if (this.userpass.trim() !== this.rewrite.trim()) {
+            if (this.userPass.trim() !== this.rewrite.trim()) {
                 $().msgpopup({
                     text: 'password and rewrite password does not match!'
                 });
@@ -97,17 +97,27 @@ new Vue({
             }
 
             const formData = {
-                fname: this.fname,
-                lname: this.lname,
-                username: this.username,
-                emailadd: this.emailadd,
-                userpass: this.userpass
+                firstName: this.firstName.trim(),
+                lastName: this.lastName.trim(),
+                userName: this.userName.trim(),
+                emailAdd: this.emailAdd.trim(),
+                userPass: this.userPass.trim()
             };
-            axios.post('http://localhost:8080/api/signup', formData)
+            axios.post('http://localhost:8080/api/user/register', formData)
                 .then(response => {
-                    $().msgpopup({
-                        text: 'User for '+ this.firstName + ' ' + this.lastName + ' successfully created!'
-                    });
+                    if (response.data === -1) {
+                        $().msgpopup({
+                            text: 'username already exist!'
+                        });
+                    } else if (response.data === -2) {
+                        $().msgpopup({
+                            text: 'email address already exist!'
+                        });
+                    } else {
+                        $().msgpopup({
+                            text: 'User for ' + this.firstName.trim() + ' ' + this.lastName.trim() + ' successfully created!'
+                        });
+                    }
                 })
                 .catch(error => {
                     $().msgpopup({
