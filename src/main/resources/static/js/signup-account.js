@@ -11,7 +11,6 @@ new Vue({
     methods: {
 
         isValidEmail(email) {
-            // Define the regular expression pattern for a valid email address
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailPattern.test(email);
         },
@@ -19,7 +18,6 @@ new Vue({
         submitSignUp() {
             const email = $('#emailAddress')
             function isValidEmail(email) {
-                // Define the regular expression pattern for a valid email address
                 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 return emailPattern.test(email);
             }
@@ -95,7 +93,9 @@ new Vue({
                 $('#rewritePassword').focus();
                 return;
             }
-
+            const msgUsername = 'username already exist!'
+            const msgEmailAdd = 'email address already exist!'
+            const msgErrorSign = 'An error occurred during sign-up'
             const formData = {
                 firstName: this.firstName.trim(),
                 lastName: this.lastName.trim(),
@@ -107,11 +107,11 @@ new Vue({
                 .then(response => {
                     if (response.data === -1) {
                         $().msgpopup({
-                            text: 'username already exist!'
+                            text: msgUsername
                         });
                     } else if (response.data === -2) {
                         $().msgpopup({
-                            text: 'email address already exist!'
+                            text: msgEmailAdd
                         });
                     } else {
                         $().msgpopup({
@@ -121,7 +121,7 @@ new Vue({
                 })
                 .catch(error => {
                     $().msgpopup({
-                        text: 'An error occurred during sign-up'
+                        text: msgErrorSign
                     });
                 });
         }
