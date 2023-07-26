@@ -7,6 +7,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Null;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
@@ -29,11 +30,6 @@ public class User implements UserDetails {
 	private String username;
 	private String password;
 	private String email;
-	@Timestamp
-	private Instant createdAt;
-
-	@Timestamp
-	private Instant updatedAt;
 
 	@Enumerated(EnumType.STRING)
 	private Role role;
