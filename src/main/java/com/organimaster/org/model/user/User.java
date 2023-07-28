@@ -17,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }),
-		@UniqueConstraint(columnNames = { "email" }) })
+@Table(name = "users")
 public class User implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -27,7 +26,6 @@ public class User implements UserDetails {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private String username;
 	private String password;
 	private String email;
 
@@ -43,13 +41,32 @@ public class User implements UserDetails {
 	}
 
 	@Override
-	public boolean isAccountNonExpired() { return true; }
+	public String getPassword() {
+		return password;
+	}
 
 	@Override
-	public boolean isAccountNonLocked() { return true; }
-	@Override
-	public boolean isCredentialsNonExpired() { return true; }
+	public String getUsername() {
+		return email;
+	}
 
 	@Override
-	public boolean isEnabled() { return true; }
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }
