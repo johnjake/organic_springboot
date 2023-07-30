@@ -29,3 +29,12 @@ application:
       refresh-token:
         expiration: 604800000 # 7 days
 
+
+com:
+  organimaster:
+    org:
+      default-user:
+        email: admin@mail.com
+        password: password123
+        managerEmail: manager@mail.com
+        managerPassword: managerPassword
