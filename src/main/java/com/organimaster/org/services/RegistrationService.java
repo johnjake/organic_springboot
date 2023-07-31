@@ -23,4 +23,5 @@ public class RegistrationService {
                 .success(response.getRegKey())
                 .build();
     }
+
 }

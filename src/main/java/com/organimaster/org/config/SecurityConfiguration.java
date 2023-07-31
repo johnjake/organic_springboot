@@ -45,7 +45,7 @@ public class SecurityConfiguration {
                                 "/swagger-ui.html",
                                 "/index",
                                 "/sign-in",
-                                "sign-up",
+                                "/sign-up",
                                 "/static/**",
                                 "/css/**",
                                 "/fonts/**",
