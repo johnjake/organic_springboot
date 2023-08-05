@@ -3,10 +3,7 @@ package com.organimaster.org.model.token;
 import com.organimaster.org.model.bases.TokenType;
 import com.organimaster.org.model.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -29,7 +26,9 @@ public class Token {
 
   public boolean expired;
 
+  @Setter
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "user_id")
   public User user;
+
 }

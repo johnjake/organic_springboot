@@ -97,25 +97,26 @@ new Vue({
             const msgEmailAdd = 'email address already exist!'
             const msgErrorSign = 'An error occurred during sign-up'
             const formData = {
-                firstName: this.firstName.trim(),
-                lastName: this.lastName.trim(),
-                userName: this.userName.trim(),
-                emailAdd: this.emailAdd.trim(),
-                userPass: this.userPass.trim()
+                firstname: this.firstName.trim(),
+                lastname: this.lastName.trim(),
+                email: this.emailAdd.trim(),
+                password: this.userPass.trim(),
+                role: "ADMIN"
             };
-            axios.post('http://localhost:8080/api/user/register', formData)
+            const accessToken = Vue.prototype.token;
+            const headers = {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            };
+            axios.post('http://localhost:8080/api/v1/auth/register', formData, { headers })
                 .then(response => {
-                    if (response.data === -1) {
+                    if (response.toString().length > 0) {
                         $().msgpopup({
-                            text: msgUsername
-                        });
-                    } else if (response.data === -2) {
-                        $().msgpopup({
-                            text: msgEmailAdd
+                            text: "Account successfully created"
                         });
                     } else {
                         $().msgpopup({
-                            text: 'User for ' + this.firstName.trim() + ' ' + this.lastName.trim() + ' successfully created!'
+                            text: "Account not created: error occurred during sign-up"
                         });
                     }
                 })
@@ -125,5 +126,22 @@ new Vue({
                     });
                 });
         }
+    },
+    mounted() {
+        const adminEmail = "admin@mail.com";
+        $.ajax({
+            url: "http://localhost:8080/api/user/reg_token/" + adminEmail,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+                Vue.prototype.token = data.access_token;
+                console.log(data.access_token);
+            },
+            error: function (xhr, status, error) {
+                $().msgpopup({
+                    text: 'Error: ' + error.text
+                });
+            }
+        })
     }
 });

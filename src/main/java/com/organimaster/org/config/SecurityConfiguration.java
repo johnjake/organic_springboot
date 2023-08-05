@@ -46,6 +46,7 @@ public class SecurityConfiguration {
                                 "/index",
                                 "/sign-in",
                                 "/sign-up",
+                                "/api/user/reg_token/{email}",
                                 "/static/**",
                                 "/css/**",
                                 "/fonts/**",

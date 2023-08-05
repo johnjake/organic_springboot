@@ -8,8 +8,8 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/organic
-    username: johnjake
+    url: jdbc:mysql://www.organi.one:3306/organic
+    username: organicfoods
     password: livelove_2000
 
   mvc:

@@ -1,6 +1,7 @@
 package com.organimaster.org;
 
 import com.organimaster.org.component.DefaultUser;
+import com.organimaster.org.playload.request.AccessTokenRequest;
 import com.organimaster.org.playload.request.RegTokenRequest;
 import com.organimaster.org.playload.request.RegisterRequest;
 import com.organimaster.org.services.AuthenticationService;
@@ -29,7 +30,12 @@ public class OrganiMasterGroupApplication {
 			var responseManager = service.userExistsByEmail(defaultUser.getManagerEmail());
 
 			if (responseAdmin > 0) {
-				System.out.println("ADMIN: " + defaultUser.getEmail());
+				var request = AccessTokenRequest
+						.builder()
+						.email(defaultUser.getEmail())
+						.build();
+				var tokenResult = regService.getTokenRegister(request);
+				System.out.println("ADMIN ACCESS TOKEN: " + tokenResult.getAccessToken());
 			} else {
 				var admin = RegisterRequest.builder()
 						.firstname("John")
