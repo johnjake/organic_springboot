@@ -9,6 +9,7 @@ import com.organimaster.org.playload.request.RegisterRequest;
 import com.organimaster.org.playload.response.AuthenticationResponse;
 import com.organimaster.org.repository.TokenRepository;
 import com.organimaster.org.repository.UserRepository;
+import com.organimaster.org.utils.CookieUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -110,6 +111,7 @@ public class AuthenticationService {
                 var accessToken = jwtService.generateToken(user);
                 revokeAllUserTokens(user);
                 saveUserToken(user, accessToken);
+
                 var authResponse = AuthenticationResponse.builder()
                         .accessToken(accessToken)
                         .refreshToken(refreshToken)

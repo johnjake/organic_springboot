@@ -44,15 +44,17 @@ new Vue({
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             };
-            axios.post('http://localhost:8080/api/v1/auth/authenticate', loginData, { headers })
+            axios.post('/api/v1/auth/authenticate', loginData, { headers, withCredentials: true })
                 .then(response => {
-                    if (response.toString().length > 0) {
-                        $("#emailAddress").val("");
-                        $("#password").val("");
-                        window.location.href = "index";
+                    const data = response.data;
+                    console.log('Content data:', data);
+                    if (data.access_token) {
+                            $("#emailAddress").val("");
+                            $("#password").val("");
+                            window.location.href ="/index"
                     } else {
                         $().msgpopup({
-                            text: "Login successfully"
+                            text: "Invalid credential check your username or password!"
                         });
                     }
                 })
@@ -66,12 +68,11 @@ new Vue({
     mounted() {
         const adminEmail = "admin@mail.com";
         $.ajax({
-            url: "http://localhost:8080/api/user/reg_token/" + adminEmail,
+            url: "/api/user/reg_token/" + adminEmail,
             type: "GET",
             dataType: "json",
             success: function (data) {
                 Vue.prototype.token = data.access_token;
-                console.log(data.access_token);
             },
             error: function (xhr, status, error) {
                 $().msgpopup({

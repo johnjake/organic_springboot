@@ -93,8 +93,6 @@ new Vue({
                 $('#rewritePassword').focus();
                 return;
             }
-            const msgUsername = 'username already exist!'
-            const msgEmailAdd = 'email address already exist!'
             const msgErrorSign = 'An error occurred during sign-up'
             const formData = {
                 firstname: this.firstName.trim(),
@@ -108,16 +106,18 @@ new Vue({
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json'
             };
-            axios.post('http://localhost:8080/api/v1/auth/register', formData, { headers })
+            axios.post('/api/v1/auth/register', formData, { headers })
                 .then(response => {
                     if (response.toString().length > 0) {
                         $().msgpopup({
-                            text: "Account successfully created"
+                            text: "Account successfully created!"
                         });
+                        window.location.href ="/sign-in";
                     } else {
                         $().msgpopup({
                             text: "Account not created: error occurred during sign-up"
                         });
+                        window.location.href = "sign-in";
                     }
                 })
                 .catch(error => {
@@ -130,7 +130,7 @@ new Vue({
     mounted() {
         const adminEmail = "admin@mail.com";
         $.ajax({
-            url: "http://localhost:8080/api/user/reg_token/" + adminEmail,
+            url: "/api/user/reg_token/" + adminEmail,
             type: "GET",
             dataType: "json",
             success: function (data) {

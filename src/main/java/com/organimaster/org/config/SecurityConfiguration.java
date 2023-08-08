@@ -13,7 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import static com.organimaster.org.model.user.Permission.*;
 import static com.organimaster.org.model.user.Role.ADMIN;
 import static com.organimaster.org.model.user.Role.MANAGER;
@@ -32,6 +31,8 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/",
+                                "/favicon.ico",
                                 "/api/v1/auth/**",
                                 "/v2/api-docs",
                                 "/v3/api-docs",
@@ -48,6 +49,7 @@ public class SecurityConfiguration {
                                 "/sign-up",
                                 "/api/user/reg_token/{email}",
                                 "/static/**",
+                                "/api/user/reg_token/",
                                 "/css/**",
                                 "/fonts/**",
                                 "/img/**",
@@ -66,8 +68,12 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout(log -> log.logoutUrl("/api/v1/auth/logout")
-                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
-                        .addLogoutHandler(logoutHandler));
+                                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+                                .addLogoutHandler(logoutHandler)
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("accessToken")
+                );
         return http.build();
     }
 }

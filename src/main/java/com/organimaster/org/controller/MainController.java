@@ -1,5 +1,9 @@
 package com.organimaster.org.controller;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,12 +11,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @Order(1)
 public class MainController {
-
+    @Autowired
+    private HttpServletRequest request;
     @GetMapping("/index")
     public String index() {
+        var cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("accessToken".equals(cookie.getName())) {
+                    String accessToken = cookie.getValue();
+                    return "index";
+                }
+            }
+        }
         return "index";
     }
-
     @GetMapping(value = "/shop-grid", produces = "text/html")
     public String navigateToShopGrid() {
         return "shop-grid";

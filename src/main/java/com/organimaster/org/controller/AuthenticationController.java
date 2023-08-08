@@ -4,14 +4,13 @@ import com.organimaster.org.playload.request.AuthenticationRequest;
 import com.organimaster.org.playload.request.RegisterRequest;
 import com.organimaster.org.playload.response.AuthenticationResponse;
 import com.organimaster.org.services.AuthenticationService;
+import com.organimaster.org.utils.CookieUtil;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
@@ -30,11 +29,20 @@ public class AuthenticationController {
     }
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody AuthenticationRequest request
+            @RequestBody AuthenticationRequest request,
+            HttpServletResponse response
     ) {
-        return ResponseEntity.ok(service.authenticate(request));
+        var result = service.authenticate(request);
+        var tokenValue = result.getAccessToken();
+        var cookie = new Cookie("accessToken", tokenValue);
+        System.out.println("******Cookie Token ****** " + tokenValue);
+        cookie.setHttpOnly(false);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        AuthenticationResponse authResponse = new AuthenticationResponse();
+        authResponse.setAccessToken(tokenValue);
+        return ResponseEntity.ok(authResponse);
     }
-
     @PostMapping("/refresh-token")
     public void refreshToken(
             HttpServletRequest request,
