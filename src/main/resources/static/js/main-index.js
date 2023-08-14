@@ -38,7 +38,14 @@ new Vue({
     },
     mounted() {
         this.getTokenFromCookie();
+        const bearerToken = this.getToken();
         console.log("access token: ", this.token);
+
+        const headers = {
+            'Authorization': `Bearer ${bearerToken}`,
+            'Content-Type': 'application/json'
+        };
+
         if (this.token.length > 2) {
             $('#authId').text(" Logout");
             $('#authLink').attr('href', '/api/v1/auth/logout');
@@ -59,6 +66,27 @@ new Vue({
         $("#butShopGrid").click(function(event) {
             event.preventDefault();
             window.location.href = '/shop-grid';
+        });
+        $('#authId').click(function(event) {
+            if (2 >= this.token.length) {
+                window.location.href = '/sign-in'
+            }
+
+            event.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/api/v1/auth/logout',
+                data: {},
+                headers: { headers },
+                success: function(response) {
+                    // document.cookie = "accessToken" + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    alert(response.toString());
+                    window.location.href = '/sign-in';
+                },
+                error: function(error) {
+                    alert(error);
+                }
+            });
         });
     }
 });

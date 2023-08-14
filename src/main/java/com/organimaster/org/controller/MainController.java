@@ -2,14 +2,11 @@ package com.organimaster.org.controller;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-@Order(1)
 public class MainController {
     @Autowired
     private HttpServletRequest request;
@@ -26,17 +23,16 @@ public class MainController {
         }
         return "index";
     }
-    @GetMapping(value = "/shop-grid", produces = "text/html")
-    public String navigateToShopGrid() {
-        return "shop-grid";
+    @GetMapping( "/api/v1/management/shop-grid")
+    public String shopGridList() {
+        return "shop-details";
     }
-
-    @GetMapping(value = "/shop-details", produces = "text/html")
+    @GetMapping( "/shop-details")
     public String navigateToShopDetails() {
         return "shop-details";
     }
 
-    @GetMapping(value = "/shoping-cart", produces = "text/html")
+    @GetMapping(value = "/shoping-cart")
     public String navigateToShoppingCart() {
         return "shoping-cart";
     }
